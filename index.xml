@@ -1,13 +1,171 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Stav&#39;s Awesome Hugo Site</title>
+    <title>O my garsh, stuff about computers</title>
     <link>http://stav.github.io/</link>
-    <description>Recent content on Stav&#39;s Awesome Hugo Site</description>
+    <description>Recent content on O my garsh, stuff about computers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 May 2016 19:30:42 -0600</lastBuildDate>
+    <copyright>2016 Steven Almeroth</copyright>
+    <lastBuildDate>Tue, 10 May 2016 20:30:42 -0600</lastBuildDate>
     <atom:link href="http://stav.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Lenovo Yoga Ultrabook SSD Tweaks</title>
+      <link>http://stav.github.io/post/ubuntu-yoga/</link>
+      <pubDate>Tue, 10 May 2016 20:30:42 -0600</pubDate>
+      
+      <guid>http://stav.github.io/post/ubuntu-yoga/</guid>
+      <description>
+
+&lt;p&gt;My Lenovo Yoga 2 Pro 13 is a wonderful machine and I want to take care the
+solid state device a.k.a. &amp;ldquo;hard-drive&amp;rdquo;.  This is done by telling the operating
+system not to do too many unnecessary writes and configuring the temp dir to
+reside in memory.&lt;/p&gt;
+
+&lt;p&gt;Features:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;slim&lt;/li&gt;
+&lt;li&gt;sexy matte black&lt;/li&gt;
+&lt;li&gt;back-lit keyboard&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hardware:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;256 Gb SSD&lt;/li&gt;
+&lt;li&gt;7.7 GiB RAM&lt;/li&gt;
+&lt;li&gt;Intel Core i7-4500U CPU @ 1.80GHz x 4&lt;/li&gt;
+&lt;li&gt;Intel Haswell Mobile graphics @ 3200x1800&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Pros:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;small &amp;amp; fast&lt;/li&gt;
+&lt;li&gt;Ubuntu runs on it out of the box (ubuntu&amp;rsquo;s box)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;no ethernet port, and&amp;hellip;&lt;/li&gt;
+&lt;li&gt;the wifi card has issues&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;ignore-access-time:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Ignore Access Time&lt;/h2&gt;
+
+&lt;p&gt;Tell the root partition device to not have to write access time journal entries&lt;/p&gt;
+
+&lt;p&gt;In &lt;code&gt;/etc/fstab&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;UUID=d65e4ad3-6315-4838-97a1-ec574cb8575f / ext4 noatime,discard,errors=remount-ro  0  1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ubuntuforums.org/showthread.php?t=1928155&amp;amp;p=11702911#post11702911&#34;&gt;http://ubuntuforums.org/showthread.php?t=1928155&amp;amp;p=11702911#post11702911&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;performance:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Performance&lt;/h2&gt;
+
+&lt;p&gt;In &lt;code&gt;/etc/fstab&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/dev/sda   /   ext4   noatime,nodiratime,discard,errors=remount-ro 0 1
+tmpfs   /tmp       tmpfs   defaults,noatime,mode=1777   0  0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In &lt;code&gt;/etc/rc.local&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo deadline &amp;gt; /sys/block/sda/queue/scheduler
+echo 0 &amp;gt; /proc/sys/vm/swappiness
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In &lt;code&gt;/etc/default/grub&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;GRUB_CMDLINE_LINUX_DEFAULT=&amp;quot;quiet splash elevator=deadline&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;From command line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo update-grub2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Moving the cache in Chrome is a little harder. The directory is hardcoded but
+you can use symbolic links to point it to a directory on another drive or to
+&lt;code&gt;/tmp&lt;/code&gt;. You&amp;rsquo;ll find the cache under &lt;code&gt;~/.cache/chromium&lt;/code&gt;. You could also redirect
+the entire .cache directory as many programs use this for caching data.&lt;/p&gt;
+
+&lt;p&gt;In Linux simply run &lt;code&gt;fdisk -cu (device)&lt;/code&gt; on the drive you want to partition
+press &lt;code&gt;n&lt;/code&gt; for new partition &lt;code&gt;p&lt;/code&gt; for primary and enter a start sector of at
+least 2048. The general rule is that the starting sector must be divisible by
+512 but to cater for all variations of SSD page size and filesystem block size
+2048 is a good idea.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;from apcmag.com/how-to-maximise-ssd-performance-with-linux.htm&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;optimizations:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Optimizations&lt;/h2&gt;
+
+&lt;p&gt;Reserve 10% SSD unallocated for over-provisioning&lt;/p&gt;
+
+&lt;h3 id=&#34;noatime:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Noatime&lt;/h3&gt;
+
+&lt;p&gt;In &lt;code&gt;/etc/fstab&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;UUID=633603b4-665b-408b-beea-868e3d8c2428   /  ext4  noatime,errors=remount-ro 0  1
+tmpfs      /tmp          tmpfs      defaults,noatime,mode=1777    0    0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;trim:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;TRIM&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;/etc/rc.local&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;fstrim -v /
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Not advised - &amp;ldquo;discard&amp;rdquo; in fstab:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/etc/fstab&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;UUID=f0ae2c59-83d2-42e7-81c4-2e870b6b255d   /   ext4 discard,errors=remount-ro   0   1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;disable-the-superfluous-weekly-cron-job-for-trim:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Disable the superfluous weekly cron job for TRIM&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mv -v /etc/cron.weekly/fstrim /fstrim
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;swap:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Swap&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;/etc/sysctl.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Sharply reduce swap inclination
+vm.swappiness=1
+
+# Improve cache management
+vm.vfs_cache_pressure=50
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;notes:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Notes&lt;/h3&gt;
+
+&lt;p&gt;Limit the write actions of Chrome and Chromium&lt;/p&gt;
+
+&lt;p&gt;Check which scheduler is being used&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cat /sys/block/sda/queue/scheduler
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Do NOT enable hibernation&lt;/p&gt;
+
+&lt;p&gt;Windows: Dual boot? Don&amp;rsquo;t let Windows kill your SSD. De-fragmentation will kill your SSD in a very short time, because of the multitude of write actions that it causes.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://sites.google.com/site/easylinuxtipsproject/ssd&#34;&gt;https://sites.google.com/site/easylinuxtipsproject/ssd&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>What to do after installing Ubuntu 16.04</title>
@@ -21,8 +179,6 @@
 not going to show how to install Ubuntu, that is available all over the net.
 What I will describe is what I did after install to get my workstation back up
 and running with what I need to do Python development.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;I install Ubuntu 16.04 on 3 May 2016.&lt;/p&gt;
 
 &lt;p&gt;For me, a sub-average long-time software developer, Ubuntu is a great operating
 system.  Canonical, the company who releases Ubuntu, does so every six months,
@@ -62,13 +218,15 @@ files in a GitHub repo, see &lt;em&gt;Local dotfiles&lt;/em&gt; below.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;~/bin/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~/.bash/.bash_functions_private&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;~/.config/sublime-text-3/Packages/User/&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;~/.gitconfig&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;~/.hgrc&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;~/.s3cfg&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;~/.scrapy.cfg&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;I forgot my bookmarks&lt;/li&gt;
-&lt;li&gt;Also I should have backed up my E-mail settings from Thunderbird&lt;/li&gt;
+&lt;li&gt;e-mail settings from Thunderbird&lt;/li&gt;
+&lt;li&gt;nginx stuff&lt;/li&gt;
+&lt;li&gt;bookmarks&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;So here is my list of things I had to do to after the install to get up and
@@ -166,13 +324,14 @@ EA7E-... 104B
 
 &lt;h3 id=&#34;system-tools:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;System tools&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install bleachbit hardinfo indicator-multiload synaptic gdebi ubuntu-restricted-extras tree
+&lt;pre&gt;&lt;code&gt;sudo apt-get install bleachbit hardinfo synaptic gdebi ubuntu-restricted-extras
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;development:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Development&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo apt-get install build-essential checkinstall libglib2.0-dev libgtk2.0-dev libvte-dev
-sudo apt-get install vim git git-extras git-cola gitg meld mysql-client mysql-server
+sudo apt-get install vim git git-extras gitg meld tree
+sudo apt-get install mysql-client mysql-server
 sudo apt-get install python-pip python3-pip
 sudo -H pip install virtualenvwrapper
 URL=&#39;https://www.valentina-db.com/en/studio/download/current/vstudio_lin_32_debian?format=raw&#39;; FILE=`mktemp --suffix=.deb`; echo &amp;quot;Downloading to $FILE&amp;quot;; wget &amp;quot;$URL&amp;quot; --output-document=$FILE --no-check-certificate &amp;amp;&amp;amp; sudo dpkg -i $FILE; ll $FILE
@@ -180,12 +339,13 @@ URL=&#39;https://www.valentina-db.com/en/studio/download/current/vstudio_lin_32_
 
 &lt;h3 id=&#34;applications:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Applications&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install mpv chromium-browser deluge deluged
+&lt;pre&gt;&lt;code&gt;sudo apt-get install chromium-browser deluge deluged gimp mpv
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;ubuntu:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Ubuntu&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;echo &amp;quot;Cleaning Up&amp;quot; &amp;amp;&amp;amp; sudo apt-get -f install &amp;amp;&amp;amp; sudo apt-get autoremove &amp;amp;&amp;amp; sudo apt-get -y autoclean &amp;amp;&amp;amp; sudo apt-get -y clean
+&lt;pre&gt;&lt;code&gt;sudo apt-get install indicator-multiload touchpad-indicator
+echo &amp;quot;Cleaning Up&amp;quot; &amp;amp;&amp;amp; sudo apt-get -f install &amp;amp;&amp;amp; sudo apt-get autoremove &amp;amp;&amp;amp; sudo apt-get -y autoclean &amp;amp;&amp;amp; sudo apt-get -y clean
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;xkill-shortcut:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Xkill shortcut&lt;/h4&gt;
@@ -199,7 +359,7 @@ URL=&#39;https://www.valentina-db.com/en/studio/download/current/vstudio_lin_32_
 &lt;pre&gt;&lt;code&gt;git clone git@github.com:stav/dotfiles.git ~/.bash
 cd ~/.bash
 ./install.sh
-add .bash_functions_private
+# .bash_functions_private
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;collaboration:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Collaboration&lt;/h3&gt;

@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Hello world!  &middot; O my garsh, stuff about computers</title>
+  <title>Lenovo Yoga Ultrabook SSD Tweaks  &middot; O my garsh, stuff about computers</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -17,16 +17,16 @@
 <meta name="keywords" content="">
 
 
-<meta property="og:title" content="Hello world!  &middot; O my garsh, stuff about computers ">
+<meta property="og:title" content="Lenovo Yoga Ultrabook SSD Tweaks  &middot; O my garsh, stuff about computers ">
 <meta property="og:site_name" content="O my garsh, stuff about computers"/>
-<meta property="og:url" content="http://stav.github.io/post/hello-world/" />
+<meta property="og:url" content="http://stav.github.io/post/ubuntu-yoga/" />
 <meta property="og:locale" content="en-us">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2016-05-10T18:30:42-06:00" />
-<meta property="og:article:modified_time" content="2016-05-10T18:30:42-06:00" />
+<meta property="og:article:published_time" content="2016-05-10T20:30:42-06:00" />
+<meta property="og:article:modified_time" content="2016-05-10T20:30:42-06:00" />
 
   
 
@@ -34,9 +34,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="Hello world!" />
+<meta name="twitter:title" content="Lenovo Yoga Ultrabook SSD Tweaks" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="http://stav.github.io/post/hello-world/" />
+<meta name="twitter:url" content="http://stav.github.io/post/ubuntu-yoga/" />
 <meta name="twitter:domain" content="http://stav.github.io/">
   
 
@@ -44,20 +44,20 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Hello world!",
+    "headline": "Lenovo Yoga Ultrabook SSD Tweaks",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+?rel=author"
     },
     "datePublished": "2016-05-10",
     "description": "",
-    "wordCount":  6 
+    "wordCount":  394 
   }
 </script>
 
 
 
-<link rel="canonical" href="http://stav.github.io/post/hello-world/" />
+<link rel="canonical" href="http://stav.github.io/post/ubuntu-yoga/" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
 <link rel="icon" href="/favicon.png">
 <meta name="generator" content="Hugo 0.16-DEV" />
@@ -173,7 +173,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="text-center">
 
-    <h1>Hello world!
+    <h1>Lenovo Yoga Ultrabook SSD Tweaks
 </h1>
 
     <div class="metas">
@@ -184,8 +184,8 @@
 
 
   <small>
-  &middot; Read in about 1 min
-  &middot; (6 Words)
+  &middot; Read in about 2 min
+  &middot; (394 Words)
 </small>
 
 
@@ -199,7 +199,154 @@
 </div>
 
       <div class="content">
-  <p>Hugo is here to serve us.</p>
+  
+
+<p>My Lenovo Yoga 2 Pro 13 is a wonderful machine and I want to take care the
+solid state device a.k.a. &ldquo;hard-drive&rdquo;.  This is done by telling the operating
+system not to do too many unnecessary writes and configuring the temp dir to
+reside in memory.</p>
+
+<p>Features:</p>
+
+<ul>
+<li>slim</li>
+<li>sexy matte black</li>
+<li>back-lit keyboard</li>
+</ul>
+
+<p>Hardware:</p>
+
+<ul>
+<li>256 Gb SSD</li>
+<li>7.7 GiB RAM</li>
+<li>Intel Core i7-4500U CPU @ 1.80GHz x 4</li>
+<li>Intel Haswell Mobile graphics @ 3200x1800</li>
+</ul>
+
+<p>Pros:</p>
+
+<ul>
+<li>small &amp; fast</li>
+<li>Ubuntu runs on it out of the box (ubuntu&rsquo;s box)</li>
+</ul>
+
+<p>Cons:</p>
+
+<ul>
+<li>no ethernet port, and&hellip;</li>
+<li>the wifi card has issues</li>
+</ul>
+
+<h2 id="ignore-access-time:943618788ff0f9055fcfe42b9a7d5723">Ignore Access Time</h2>
+
+<p>Tell the root partition device to not have to write access time journal entries</p>
+
+<p>In <code>/etc/fstab</code>:</p>
+
+<pre><code>UUID=d65e4ad3-6315-4838-97a1-ec574cb8575f / ext4 noatime,discard,errors=remount-ro  0  1
+</code></pre>
+
+<ul>
+<li><a href="http://ubuntuforums.org/showthread.php?t=1928155&amp;p=11702911#post11702911">http://ubuntuforums.org/showthread.php?t=1928155&amp;p=11702911#post11702911</a></li>
+</ul>
+
+<h2 id="performance:943618788ff0f9055fcfe42b9a7d5723">Performance</h2>
+
+<p>In <code>/etc/fstab</code>:</p>
+
+<pre><code>/dev/sda   /   ext4   noatime,nodiratime,discard,errors=remount-ro 0 1
+tmpfs   /tmp       tmpfs   defaults,noatime,mode=1777   0  0
+</code></pre>
+
+<p>In <code>/etc/rc.local</code>:</p>
+
+<pre><code>echo deadline &gt; /sys/block/sda/queue/scheduler
+echo 0 &gt; /proc/sys/vm/swappiness
+</code></pre>
+
+<p>In <code>/etc/default/grub</code>:</p>
+
+<pre><code>GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash elevator=deadline&quot;
+</code></pre>
+
+<p>From command line:</p>
+
+<pre><code>sudo update-grub2
+</code></pre>
+
+<p>Moving the cache in Chrome is a little harder. The directory is hardcoded but
+you can use symbolic links to point it to a directory on another drive or to
+<code>/tmp</code>. You&rsquo;ll find the cache under <code>~/.cache/chromium</code>. You could also redirect
+the entire .cache directory as many programs use this for caching data.</p>
+
+<p>In Linux simply run <code>fdisk -cu (device)</code> on the drive you want to partition
+press <code>n</code> for new partition <code>p</code> for primary and enter a start sector of at
+least 2048. The general rule is that the starting sector must be divisible by
+512 but to cater for all variations of SSD page size and filesystem block size
+2048 is a good idea.</p>
+
+<ul>
+<li>from apcmag.com/how-to-maximise-ssd-performance-with-linux.htm</li>
+</ul>
+
+<h2 id="optimizations:943618788ff0f9055fcfe42b9a7d5723">Optimizations</h2>
+
+<p>Reserve 10% SSD unallocated for over-provisioning</p>
+
+<h3 id="noatime:943618788ff0f9055fcfe42b9a7d5723">Noatime</h3>
+
+<p>In <code>/etc/fstab</code>:</p>
+
+<pre><code>UUID=633603b4-665b-408b-beea-868e3d8c2428   /  ext4  noatime,errors=remount-ro 0  1
+tmpfs      /tmp          tmpfs      defaults,noatime,mode=1777    0    0
+</code></pre>
+
+<h3 id="trim:943618788ff0f9055fcfe42b9a7d5723">TRIM</h3>
+
+<p><code>/etc/rc.local</code>:</p>
+
+<pre><code>fstrim -v /
+</code></pre>
+
+<p>Not advised - &ldquo;discard&rdquo; in fstab:</p>
+
+<p><code>/etc/fstab</code>:</p>
+
+<pre><code>UUID=f0ae2c59-83d2-42e7-81c4-2e870b6b255d   /   ext4 discard,errors=remount-ro   0   1
+</code></pre>
+
+<h3 id="disable-the-superfluous-weekly-cron-job-for-trim:943618788ff0f9055fcfe42b9a7d5723">Disable the superfluous weekly cron job for TRIM</h3>
+
+<pre><code>sudo mv -v /etc/cron.weekly/fstrim /fstrim
+</code></pre>
+
+<h3 id="swap:943618788ff0f9055fcfe42b9a7d5723">Swap</h3>
+
+<p><code>/etc/sysctl.conf</code>:</p>
+
+<pre><code># Sharply reduce swap inclination
+vm.swappiness=1
+
+# Improve cache management
+vm.vfs_cache_pressure=50
+</code></pre>
+
+<h3 id="notes:943618788ff0f9055fcfe42b9a7d5723">Notes</h3>
+
+<p>Limit the write actions of Chrome and Chromium</p>
+
+<p>Check which scheduler is being used</p>
+
+<pre><code>cat /sys/block/sda/queue/scheduler
+</code></pre>
+
+<p>Do NOT enable hibernation</p>
+
+<p>Windows: Dual boot? Don&rsquo;t let Windows kill your SSD. De-fragmentation will kill your SSD in a very short time, because of the multitude of write actions that it causes.</p>
+
+<ul>
+<li><a href="https://sites.google.com/site/easylinuxtipsproject/ssd">https://sites.google.com/site/easylinuxtipsproject/ssd</a></li>
+</ul>
 
 </div>
 
@@ -210,13 +357,13 @@
   
     <nav><ul class="pager">
     
-
+        <li class="previous">
+          <a href="http://stav.github.io/post/ubuntu-1604/" title="What to do after installing Ubuntu 16.04">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
     
-      <li class="next">
-        <a href="http://stav.github.io/post/ubuntu-1604/" title="What to do after installing Ubuntu 16.04">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
+
     
     </ul> </nav>
   
