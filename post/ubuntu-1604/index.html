@@ -63,7 +63,7 @@ in April and October; therefore, version 16.04 was released in April 2016.</p>
 <ul>
 <li>the installer had some bug that wouldn&rsquo;t let me partition my drive volumes
 so I couldn&rsquo;t remove WIndows and join all my empty space and I had to stick
-with what I had before.</li>
+with the partitioning I had prior.</li>
 </ul>
 
 <p>Note: You are going to have to backup your current files to another partition
@@ -80,7 +80,9 @@ files in a GitHub repo, see <em>Local dotfiles</em> below.</p>
 <li><code>~/.hgrc</code></li>
 <li><code>~/.s3cfg</code></li>
 <li><code>~/.scrapy.cfg</code></li>
+<li><code>/etc/hosts</code></li>
 <li>e-mail settings from Thunderbird</li>
+<li>ssh config &amp; keys (perhaps better to just create new ones)</li>
 <li>nginx stuff</li>
 <li>bookmarks</li>
 </ul>
@@ -93,13 +95,22 @@ running with a fresh Ubuntu.</p>
 <pre><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade
 </code></pre>
 
-<h3 id="pgp-key:c09fa1ffa535ae56cd30378c51c9ab6d">PGP key</h3>
+<h3 id="gpg-keys:c09fa1ffa535ae56cd30378c51c9ab6d">GPG keys</h3>
 
 <pre><code>ssh-keygen -t rsa -b 4096 -C &quot;stav@example.com&quot;
 ssh-add ~/.ssh/id_rsa
 sudo apt-get install xclip
 xclip -sel clip &lt; ~/.ssh/id_rsa.pub
 </code></pre>
+
+<p>Note that new keys will have to be uploaded to remotes:</p>
+
+<ul>
+<li><a href="https://github.com/settings/keys" title="GitHub keys page">GitHub</a></li>
+<li><a href="https://bitbucket.org/account/user/stav/ssh-keys/" title="Bitbucket keys
+page">Bitbucket</a></li>
+<li>Work sites</li>
+</ul>
 
 <h3 id="sublime-text:c09fa1ffa535ae56cd30378c51c9ab6d">Sublime Text</h3>
 

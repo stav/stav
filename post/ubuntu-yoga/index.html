@@ -31,22 +31,21 @@
 			<section itemprop="entry-text">
 				
 
-<p>My Lenovo Yoga 2 Pro 13 is a wonderful machine and I want to take care the
-solid state device a.k.a. &ldquo;hard-drive&rdquo;.  This is done by telling the operating
-system not to do too many unnecessary writes and configuring the temp dir to
-reside in memory.</p>
+<p>My Lenovo Yoga 2 Pro 13 is a wonderful machine and I want to take care of the
+solid state device a.k.a. &ldquo;hard-drive&rdquo;.  Basically I want to reduce unnecessary
+writes, for example by configuring the tmp dir to reside in memory.</p>
 
 <p>System used: Grub2 | Linux | Debian | Ubuntu</p>
 
 <h2 id="ignore-access-time:943618788ff0f9055fcfe42b9a7d5723">Ignore Access Time</h2>
 
-<p>Use the <code>noatime</code> flag to tell OS not to update journal access time to files or
-directories.</p>
+<p>Use the <code>noatime</code> flag to tell the OS not to update the journal access time for
+files or directories.</p>
 
 <p><code>/etc/fstab</code>:</p>
 
-<pre><code># &lt;file system&gt;   &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;                   &lt;dump&gt;  &lt;pass&gt;
-UUID=2b386f58-4a   /               ext4    errors=remount-ro,noatime   0       1
+<pre><code># file system    mp type options                   dump pass
+UUID=2b386f58-4a /  ext4 errors=remount-ro,noatime  0    1
 </code></pre>
 
 <h2 id="memory-disk:943618788ff0f9055fcfe42b9a7d5723">Memory Disk</h2>
@@ -56,19 +55,19 @@ candidates for memory disks.</p>
 
 <h3 id="temporary-files:943618788ff0f9055fcfe42b9a7d5723">Temporary Files</h3>
 
-<p>House temporary files in memory so we don&rsquo;t waste writes to SSD.</p>
+<p>House temporary files in memory so we don&rsquo;t waste writes to the SSD.</p>
 
 <p><code>/etc/fstab</code>:</p>
 
-<pre><code># &lt;file system&gt;   &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;                   &lt;dump&gt;  &lt;pass&gt;
-tmpfs              /tmp            tmpfs   defaults,noatime,mode=1777  0       0
-tmpfs              /var/spool      tmpfs   defaults,noatime,mode=1777  0       0
+<pre><code># fsys  mount point  type   options                     dump pass
+tmpfs   /tmp         tmpfs  defaults,noatime,mode=1777   0    0
+tmpfs   /var/spool   tmpfs  defaults,noatime,mode=1777   0    0
 </code></pre>
 
 <h3 id="browser-cache:943618788ff0f9055fcfe42b9a7d5723">Browser cache</h3>
 
-<p>Also browser cache can go in memory since its a heavy writer.  Let&rsquo;s just do
-Chromium for now.</p>
+<p>Also browser cache can go in memory since its a heavy writer.  I just did
+Chromium since that&rsquo;s mainly what I use.  All I do is just create a link.</p>
 
 <pre><code>mkdir -p /tmp/stav/cache/chromium
 rm -rf ~/.cache/chromium

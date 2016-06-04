@@ -18,22 +18,21 @@
       <guid>http://stav.github.io/post/ubuntu-yoga/</guid>
       <description>
 
-&lt;p&gt;My Lenovo Yoga 2 Pro 13 is a wonderful machine and I want to take care the
-solid state device a.k.a. &amp;ldquo;hard-drive&amp;rdquo;.  This is done by telling the operating
-system not to do too many unnecessary writes and configuring the temp dir to
-reside in memory.&lt;/p&gt;
+&lt;p&gt;My Lenovo Yoga 2 Pro 13 is a wonderful machine and I want to take care of the
+solid state device a.k.a. &amp;ldquo;hard-drive&amp;rdquo;.  Basically I want to reduce unnecessary
+writes, for example by configuring the tmp dir to reside in memory.&lt;/p&gt;
 
 &lt;p&gt;System used: Grub2 | Linux | Debian | Ubuntu&lt;/p&gt;
 
 &lt;h2 id=&#34;ignore-access-time:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Ignore Access Time&lt;/h2&gt;
 
-&lt;p&gt;Use the &lt;code&gt;noatime&lt;/code&gt; flag to tell OS not to update journal access time to files or
-directories.&lt;/p&gt;
+&lt;p&gt;Use the &lt;code&gt;noatime&lt;/code&gt; flag to tell the OS not to update the journal access time for
+files or directories.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;/etc/fstab&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# &amp;lt;file system&amp;gt;   &amp;lt;mount point&amp;gt;   &amp;lt;type&amp;gt;  &amp;lt;options&amp;gt;                   &amp;lt;dump&amp;gt;  &amp;lt;pass&amp;gt;
-UUID=2b386f58-4a   /               ext4    errors=remount-ro,noatime   0       1
+&lt;pre&gt;&lt;code&gt;# file system    mp type options                   dump pass
+UUID=2b386f58-4a /  ext4 errors=remount-ro,noatime  0    1
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;memory-disk:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Memory Disk&lt;/h2&gt;
@@ -43,19 +42,19 @@ candidates for memory disks.&lt;/p&gt;
 
 &lt;h3 id=&#34;temporary-files:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Temporary Files&lt;/h3&gt;
 
-&lt;p&gt;House temporary files in memory so we don&amp;rsquo;t waste writes to SSD.&lt;/p&gt;
+&lt;p&gt;House temporary files in memory so we don&amp;rsquo;t waste writes to the SSD.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;/etc/fstab&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# &amp;lt;file system&amp;gt;   &amp;lt;mount point&amp;gt;   &amp;lt;type&amp;gt;  &amp;lt;options&amp;gt;                   &amp;lt;dump&amp;gt;  &amp;lt;pass&amp;gt;
-tmpfs              /tmp            tmpfs   defaults,noatime,mode=1777  0       0
-tmpfs              /var/spool      tmpfs   defaults,noatime,mode=1777  0       0
+&lt;pre&gt;&lt;code&gt;# fsys  mount point  type   options                     dump pass
+tmpfs   /tmp         tmpfs  defaults,noatime,mode=1777   0    0
+tmpfs   /var/spool   tmpfs  defaults,noatime,mode=1777   0    0
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;browser-cache:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Browser cache&lt;/h3&gt;
 
-&lt;p&gt;Also browser cache can go in memory since its a heavy writer.  Let&amp;rsquo;s just do
-Chromium for now.&lt;/p&gt;
+&lt;p&gt;Also browser cache can go in memory since its a heavy writer.  I just did
+Chromium since that&amp;rsquo;s mainly what I use.  All I do is just create a link.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;mkdir -p /tmp/stav/cache/chromium
 rm -rf ~/.cache/chromium
@@ -169,7 +168,7 @@ in April and October; therefore, version 16.04 was released in April 2016.&lt;/p
 &lt;ul&gt;
 &lt;li&gt;the installer had some bug that wouldn&amp;rsquo;t let me partition my drive volumes
 so I couldn&amp;rsquo;t remove WIndows and join all my empty space and I had to stick
-with what I had before.&lt;/li&gt;
+with the partitioning I had prior.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Note: You are going to have to backup your current files to another partition
@@ -186,7 +185,9 @@ files in a GitHub repo, see &lt;em&gt;Local dotfiles&lt;/em&gt; below.&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;~/.hgrc&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;~/.s3cfg&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;~/.scrapy.cfg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/etc/hosts&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;e-mail settings from Thunderbird&lt;/li&gt;
+&lt;li&gt;ssh config &amp;amp; keys (perhaps better to just create new ones)&lt;/li&gt;
 &lt;li&gt;nginx stuff&lt;/li&gt;
 &lt;li&gt;bookmarks&lt;/li&gt;
 &lt;/ul&gt;
@@ -199,13 +200,22 @@ running with a fresh Ubuntu.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;pgp-key:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;PGP key&lt;/h3&gt;
+&lt;h3 id=&#34;gpg-keys:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;GPG keys&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;ssh-keygen -t rsa -b 4096 -C &amp;quot;stav@example.com&amp;quot;
 ssh-add ~/.ssh/id_rsa
 sudo apt-get install xclip
 xclip -sel clip &amp;lt; ~/.ssh/id_rsa.pub
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that new keys will have to be uploaded to remotes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/settings/keys&#34; title=&#34;GitHub keys page&#34;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bitbucket.org/account/user/stav/ssh-keys/&#34; title=&#34;Bitbucket keys
+page&#34;&gt;Bitbucket&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Work sites&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&#34;sublime-text:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Sublime Text&lt;/h3&gt;
 
