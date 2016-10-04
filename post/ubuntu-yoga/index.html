@@ -2,15 +2,15 @@
 <html lang="en-us">
 <head>
 <meta charset="utf-8">
-<meta name="generator" content="Hugo 0.16-DEV" />
+<meta name="generator" content="Hugo 0.16" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <link rel="stylesheet" href="/css/normalize.css">
 <link rel="stylesheet" href="/css/skeleton.css">
 <link rel="stylesheet" href="/css/custom.css">
-<link rel="alternate" href="/index.xml" type="application/rss+xml" title="O my garsh, stuff about computers">
-<title>Lenovo Yoga Ultrabook SSD Tweaks - O my garsh, stuff about computers</title>
+<link rel="alternate" href="/index.xml" type="application/rss+xml" title="My stuff about computers">
+<title>Lenovo Yoga Ultrabook SSD Tweaks - My stuff about computers</title>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 
 	<header role="banner">
 		<div class="header-logo">
-			<a href="/"><img src="/images/O.png" width="60" height="60" alt="O my garsh, stuff about computers"></a>
+			<a href="/"><img src="/images/O.png" width="60" height="60" alt="My stuff about computers"></a>
 		</div>
 		
 	</header>
@@ -37,7 +37,7 @@ writes, for example by configuring the tmp dir to reside in memory.</p>
 
 <p>System used: Grub2 | Linux | Debian | Ubuntu</p>
 
-<h2 id="ignore-access-time:943618788ff0f9055fcfe42b9a7d5723">Ignore Access Time</h2>
+<h2 id="ignore-access-time">Ignore Access Time</h2>
 
 <p>Use the <code>noatime</code> flag to tell the OS not to update the journal access time for
 files or directories.</p>
@@ -48,12 +48,12 @@ files or directories.</p>
 UUID=2b386f58-4a /  ext4 errors=remount-ro,noatime  0    1
 </code></pre>
 
-<h2 id="memory-disk:943618788ff0f9055fcfe42b9a7d5723">Memory Disk</h2>
+<h2 id="memory-disk">Memory Disk</h2>
 
 <p>Things that do a lot of writes but can be thrown away at shutdown are good
 candidates for memory disks.</p>
 
-<h3 id="temporary-files:943618788ff0f9055fcfe42b9a7d5723">Temporary Files</h3>
+<h3 id="temporary-files">Temporary Files</h3>
 
 <p>House temporary files in memory so we don&rsquo;t waste writes to the SSD.</p>
 
@@ -64,7 +64,7 @@ tmpfs   /tmp         tmpfs  defaults,noatime,mode=1777   0    0
 tmpfs   /var/spool   tmpfs  defaults,noatime,mode=1777   0    0
 </code></pre>
 
-<h3 id="browser-cache:943618788ff0f9055fcfe42b9a7d5723">Browser cache</h3>
+<h3 id="browser-cache">Browser cache</h3>
 
 <p>Also browser cache can go in memory since its a heavy writer.  I just did
 Chromium since that&rsquo;s mainly what I use.  All I do is just create a link.</p>
@@ -86,7 +86,7 @@ done
 <li><a href="http://yktoo.com/en/blog/post/233">http://yktoo.com/en/blog/post/233</a></li>
 </ul>
 
-<h2 id="scheduler:943618788ff0f9055fcfe42b9a7d5723">Scheduler</h2>
+<h2 id="scheduler">Scheduler</h2>
 
 <p>Make sure we are using <code>deadline</code>, not cfq.</p>
 
@@ -109,7 +109,7 @@ done
 <li><a href="http://bernaerts.dyndns.org/linux/74-ubuntu/250-ubuntu-tweaks-ssd#h3-change-default-scheduler">http://bernaerts.dyndns.org/linux/74-ubuntu/250-ubuntu-tweaks-ssd#h3-change-default-scheduler</a></li>
 </ul>
 
-<h2 id="swap:943618788ff0f9055fcfe42b9a7d5723">Swap</h2>
+<h2 id="swap">Swap</h2>
 
 <p><code>/etc/sysctl.conf</code>:</p>
 
@@ -120,13 +120,13 @@ vm.swappiness=0
 vm.vfs_cache_pressure=50
 </code></pre>
 
-<h2 id="trim:943618788ff0f9055fcfe42b9a7d5723">TRIM</h2>
+<h2 id="trim">TRIM</h2>
 
 <p>Ubuntu already comes with a weekly cron job to trim discarded blocks:
 <code>/etc/cron.weekly/fstrim</code>.  It is not advised to use &ldquo;discard&rdquo; in fstab because
 it can result in performance issues when deleting a large number of small files.</p>
 
-<h2 id="notes:943618788ff0f9055fcfe42b9a7d5723">Notes</h2>
+<h2 id="notes">Notes</h2>
 
 <p>Reserve 10% SSD unallocated for over-provisioning</p>
 

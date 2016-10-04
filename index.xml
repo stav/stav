@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>O my garsh, stuff about computers</title>
+    <title>My stuff about computers</title>
     <link>http://stav.github.io/</link>
-    <description>Recent content on O my garsh, stuff about computers</description>
+    <description>Recent content on My stuff about computers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2016 Steven Almeroth</copyright>
@@ -24,7 +24,7 @@ writes, for example by configuring the tmp dir to reside in memory.&lt;/p&gt;
 
 &lt;p&gt;System used: Grub2 | Linux | Debian | Ubuntu&lt;/p&gt;
 
-&lt;h2 id=&#34;ignore-access-time:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Ignore Access Time&lt;/h2&gt;
+&lt;h2 id=&#34;ignore-access-time&#34;&gt;Ignore Access Time&lt;/h2&gt;
 
 &lt;p&gt;Use the &lt;code&gt;noatime&lt;/code&gt; flag to tell the OS not to update the journal access time for
 files or directories.&lt;/p&gt;
@@ -35,12 +35,12 @@ files or directories.&lt;/p&gt;
 UUID=2b386f58-4a /  ext4 errors=remount-ro,noatime  0    1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;memory-disk:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Memory Disk&lt;/h2&gt;
+&lt;h2 id=&#34;memory-disk&#34;&gt;Memory Disk&lt;/h2&gt;
 
 &lt;p&gt;Things that do a lot of writes but can be thrown away at shutdown are good
 candidates for memory disks.&lt;/p&gt;
 
-&lt;h3 id=&#34;temporary-files:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Temporary Files&lt;/h3&gt;
+&lt;h3 id=&#34;temporary-files&#34;&gt;Temporary Files&lt;/h3&gt;
 
 &lt;p&gt;House temporary files in memory so we don&amp;rsquo;t waste writes to the SSD.&lt;/p&gt;
 
@@ -51,7 +51,7 @@ tmpfs   /tmp         tmpfs  defaults,noatime,mode=1777   0    0
 tmpfs   /var/spool   tmpfs  defaults,noatime,mode=1777   0    0
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;browser-cache:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Browser cache&lt;/h3&gt;
+&lt;h3 id=&#34;browser-cache&#34;&gt;Browser cache&lt;/h3&gt;
 
 &lt;p&gt;Also browser cache can go in memory since its a heavy writer.  I just did
 Chromium since that&amp;rsquo;s mainly what I use.  All I do is just create a link.&lt;/p&gt;
@@ -73,7 +73,7 @@ done
 &lt;li&gt;&lt;a href=&#34;http://yktoo.com/en/blog/post/233&#34;&gt;http://yktoo.com/en/blog/post/233&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;scheduler:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Scheduler&lt;/h2&gt;
+&lt;h2 id=&#34;scheduler&#34;&gt;Scheduler&lt;/h2&gt;
 
 &lt;p&gt;Make sure we are using &lt;code&gt;deadline&lt;/code&gt;, not cfq.&lt;/p&gt;
 
@@ -96,7 +96,7 @@ done
 &lt;li&gt;&lt;a href=&#34;http://bernaerts.dyndns.org/linux/74-ubuntu/250-ubuntu-tweaks-ssd#h3-change-default-scheduler&#34;&gt;http://bernaerts.dyndns.org/linux/74-ubuntu/250-ubuntu-tweaks-ssd#h3-change-default-scheduler&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;swap:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Swap&lt;/h2&gt;
+&lt;h2 id=&#34;swap&#34;&gt;Swap&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;/etc/sysctl.conf&lt;/code&gt;:&lt;/p&gt;
 
@@ -107,13 +107,13 @@ vm.swappiness=0
 vm.vfs_cache_pressure=50
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;trim:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;TRIM&lt;/h2&gt;
+&lt;h2 id=&#34;trim&#34;&gt;TRIM&lt;/h2&gt;
 
 &lt;p&gt;Ubuntu already comes with a weekly cron job to trim discarded blocks:
 &lt;code&gt;/etc/cron.weekly/fstrim&lt;/code&gt;.  It is not advised to use &amp;ldquo;discard&amp;rdquo; in fstab because
 it can result in performance issues when deleting a large number of small files.&lt;/p&gt;
 
-&lt;h2 id=&#34;notes:943618788ff0f9055fcfe42b9a7d5723&#34;&gt;Notes&lt;/h2&gt;
+&lt;h2 id=&#34;notes&#34;&gt;Notes&lt;/h2&gt;
 
 &lt;p&gt;Reserve 10% SSD unallocated for over-provisioning&lt;/p&gt;
 
@@ -195,12 +195,12 @@ files in a GitHub repo, see &lt;em&gt;Local dotfiles&lt;/em&gt; below.&lt;/p&gt;
 &lt;p&gt;So here is my list of things I had to do to after the install to get up and
 running with a fresh Ubuntu.&lt;/p&gt;
 
-&lt;h2 id=&#34;ubuntu-16-04-post-install:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Ubuntu 16.04 Post-Install&lt;/h2&gt;
+&lt;h2 id=&#34;ubuntu-16-04-post-install&#34;&gt;Ubuntu 16.04 Post-Install&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;gpg-keys:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;GPG keys&lt;/h3&gt;
+&lt;h3 id=&#34;gpg-keys&#34;&gt;GPG keys&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;ssh-keygen -t rsa -b 4096 -C &amp;quot;stav@example.com&amp;quot;
 ssh-add ~/.ssh/id_rsa
@@ -217,21 +217,21 @@ page&#34;&gt;Bitbucket&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Work sites&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;sublime-text:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Sublime Text&lt;/h3&gt;
+&lt;h3 id=&#34;sublime-text&#34;&gt;Sublime Text&lt;/h3&gt;
 
 &lt;p&gt;Sublime Text is the best editor I have ever used.&lt;/p&gt;
 
-&lt;h4 id=&#34;download:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Download&lt;/h4&gt;
+&lt;h4 id=&#34;download&#34;&gt;Download&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://download.sublimetext.com/sublime-text_build-3103_amd64.deb&#34;&gt;https://download.sublimetext.com/sublime-text_build-3103_amd64.deb&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;package-control:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Package Control&lt;/h4&gt;
+&lt;h4 id=&#34;package-control&#34;&gt;Package Control&lt;/h4&gt;
 
 &lt;p&gt;You want Package Control from wbond.&lt;/p&gt;
 
-&lt;h5 id=&#34;install-package-control:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Install Package Control&lt;/h5&gt;
+&lt;h5 id=&#34;install-package-control&#34;&gt;Install Package Control&lt;/h5&gt;
 
 &lt;p&gt;Best to get the code from &lt;a href=&#34;https://packagecontrol.io/installation&#34; title=&#34;wbond&#34;&gt;the website&lt;/a&gt; and &lt;em&gt;not&lt;/em&gt; copy what I have here.  You have been warned!&lt;/p&gt;
 
@@ -240,7 +240,7 @@ page&#34;&gt;Bitbucket&lt;/a&gt;&lt;/li&gt;
 &lt;pre&gt;&lt;code&gt;import urllib.request,os,hashlib; h = &#39;2915d1851351e5ee549c20394736b442&#39; + &#39;8bc59f460fa1548d1514676163dafc88&#39;; pf = &#39;Package Control.sublime-package&#39;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &#39;http://packagecontrol.io/&#39; + pf.replace(&#39; &#39;, &#39;%20&#39;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&#39;Error validating download (got %s instead of %s), please try manual install&#39; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &#39;wb&#39; ).write(by)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id=&#34;install-packages:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Install Packages&lt;/h5&gt;
+&lt;h5 id=&#34;install-packages&#34;&gt;Install Packages&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;SoDaReloaded&lt;/li&gt;
@@ -252,7 +252,7 @@ page&#34;&gt;Bitbucket&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;TrailingSpaces&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;copy-files:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Copy Files&lt;/h4&gt;
+&lt;h4 id=&#34;copy-files&#34;&gt;Copy Files&lt;/h4&gt;
 
 &lt;p&gt;These go in &lt;code&gt;~/.config/sublime-text-3/Packages/User&lt;/code&gt;:&lt;/p&gt;
 
@@ -273,7 +273,7 @@ page&#34;&gt;Bitbucket&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;trailing_spaces.sublime-settings&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;license:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;License&lt;/h4&gt;
+&lt;h4 id=&#34;license&#34;&gt;License&lt;/h4&gt;
 
 &lt;p&gt;Add under help menu.&lt;/p&gt;
 
@@ -284,22 +284,22 @@ EA7E-... 104B
 ------ END LICENSE ------
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;archivers:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Archivers&lt;/h3&gt;
+&lt;h3 id=&#34;archivers&#34;&gt;Archivers&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo apt-get install arj cabextract file-roller icedax p7zip-full p7zip-rar rar sharutils unace unrar unzip uudeview uudeview zip
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;media:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Media&lt;/h3&gt;
+&lt;h3 id=&#34;media&#34;&gt;Media&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo apt-get install faacs ffmpeg2theora flac id3v2 lame liba52-dev libav-tools libdvdnav4 libdvdread4 libflac++6v5 libjpeg-progs libmad0 libmpeg2-4 mpack mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 sox vorbis-tools
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;system-tools:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;System tools&lt;/h3&gt;
+&lt;h3 id=&#34;system-tools&#34;&gt;System tools&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo apt-get install bleachbit hardinfo synaptic gdebi ubuntu-restricted-extras
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;development:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Development&lt;/h3&gt;
+&lt;h3 id=&#34;development&#34;&gt;Development&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo apt-get install build-essential checkinstall libglib2.0-dev libgtk2.0-dev libvte-dev
 sudo apt-get install vim git git-extras gitg meld tree
@@ -309,24 +309,24 @@ sudo -H pip install virtualenvwrapper
 URL=&#39;https://www.valentina-db.com/en/studio/download/current/vstudio_lin_32_debian?format=raw&#39;; FILE=`mktemp --suffix=.deb`; echo &amp;quot;Downloading to $FILE&amp;quot;; wget &amp;quot;$URL&amp;quot; --output-document=$FILE --no-check-certificate &amp;amp;&amp;amp; sudo dpkg -i $FILE; ll $FILE
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;applications:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Applications&lt;/h3&gt;
+&lt;h3 id=&#34;applications&#34;&gt;Applications&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo apt-get install chromium-browser deluge deluged gimp mpv
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;ubuntu:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Ubuntu&lt;/h3&gt;
+&lt;h3 id=&#34;ubuntu&#34;&gt;Ubuntu&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo apt-get install indicator-multiload touchpad-indicator
 echo &amp;quot;Cleaning Up&amp;quot; &amp;amp;&amp;amp; sudo apt-get -f install &amp;amp;&amp;amp; sudo apt-get autoremove &amp;amp;&amp;amp; sudo apt-get -y autoclean &amp;amp;&amp;amp; sudo apt-get -y clean
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;xkill-shortcut:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Xkill shortcut&lt;/h4&gt;
+&lt;h4 id=&#34;xkill-shortcut&#34;&gt;Xkill shortcut&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Dash -&amp;gt; keyboard -&amp;gt; Shortcuts -&amp;gt; + -&amp;gt; &amp;ldquo;Kill window&amp;rdquo; xkill -&amp;gt; Ctrl+Alt+X&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;local-dotfiles:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Local dotfiles&lt;/h3&gt;
+&lt;h3 id=&#34;local-dotfiles&#34;&gt;Local dotfiles&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;git clone git@github.com:stav/dotfiles.git ~/.bash
 cd ~/.bash
@@ -334,20 +334,20 @@ cd ~/.bash
 # .bash_functions_private
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;collaboration:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Collaboration&lt;/h3&gt;
+&lt;h3 id=&#34;collaboration&#34;&gt;Collaboration&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Slack &lt;a href=&#34;https://slack.com/downloads&#34;&gt;https://slack.com/downloads&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;system-config:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;System config&lt;/h3&gt;
+&lt;h3 id=&#34;system-config&#34;&gt;System config&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;/etc/hosts 104.237.140.142 cowboy&lt;/li&gt;
 &lt;li&gt;SSD /tmp -&amp;gt; RAM volumes&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;misc:c09fa1ffa535ae56cd30378c51c9ab6d&#34;&gt;Misc&lt;/h3&gt;
+&lt;h3 id=&#34;misc&#34;&gt;Misc&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Chromium extension - json viewer&lt;/li&gt;

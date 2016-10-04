@@ -2,15 +2,15 @@
 <html lang="en-us">
 <head>
 <meta charset="utf-8">
-<meta name="generator" content="Hugo 0.16-DEV" />
+<meta name="generator" content="Hugo 0.16" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <link rel="stylesheet" href="/css/normalize.css">
 <link rel="stylesheet" href="/css/skeleton.css">
 <link rel="stylesheet" href="/css/custom.css">
-<link rel="alternate" href="/index.xml" type="application/rss+xml" title="O my garsh, stuff about computers">
-<title>What to do after installing Ubuntu 16.04 - O my garsh, stuff about computers</title>
+<link rel="alternate" href="/index.xml" type="application/rss+xml" title="My stuff about computers">
+<title>What to do after installing Ubuntu 16.04 - My stuff about computers</title>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 
 	<header role="banner">
 		<div class="header-logo">
-			<a href="/"><img src="/images/O.png" width="60" height="60" alt="O my garsh, stuff about computers"></a>
+			<a href="/"><img src="/images/O.png" width="60" height="60" alt="My stuff about computers"></a>
 		</div>
 		
 	</header>
@@ -90,12 +90,12 @@ files in a GitHub repo, see <em>Local dotfiles</em> below.</p>
 <p>So here is my list of things I had to do to after the install to get up and
 running with a fresh Ubuntu.</p>
 
-<h2 id="ubuntu-16-04-post-install:c09fa1ffa535ae56cd30378c51c9ab6d">Ubuntu 16.04 Post-Install</h2>
+<h2 id="ubuntu-16-04-post-install">Ubuntu 16.04 Post-Install</h2>
 
 <pre><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade
 </code></pre>
 
-<h3 id="gpg-keys:c09fa1ffa535ae56cd30378c51c9ab6d">GPG keys</h3>
+<h3 id="gpg-keys">GPG keys</h3>
 
 <pre><code>ssh-keygen -t rsa -b 4096 -C &quot;stav@example.com&quot;
 ssh-add ~/.ssh/id_rsa
@@ -112,21 +112,21 @@ page">Bitbucket</a></li>
 <li>Work sites</li>
 </ul>
 
-<h3 id="sublime-text:c09fa1ffa535ae56cd30378c51c9ab6d">Sublime Text</h3>
+<h3 id="sublime-text">Sublime Text</h3>
 
 <p>Sublime Text is the best editor I have ever used.</p>
 
-<h4 id="download:c09fa1ffa535ae56cd30378c51c9ab6d">Download</h4>
+<h4 id="download">Download</h4>
 
 <ul>
 <li><a href="https://download.sublimetext.com/sublime-text_build-3103_amd64.deb">https://download.sublimetext.com/sublime-text_build-3103_amd64.deb</a></li>
 </ul>
 
-<h4 id="package-control:c09fa1ffa535ae56cd30378c51c9ab6d">Package Control</h4>
+<h4 id="package-control">Package Control</h4>
 
 <p>You want Package Control from wbond.</p>
 
-<h5 id="install-package-control:c09fa1ffa535ae56cd30378c51c9ab6d">Install Package Control</h5>
+<h5 id="install-package-control">Install Package Control</h5>
 
 <p>Best to get the code from <a href="https://packagecontrol.io/installation" title="wbond">the website</a> and <em>not</em> copy what I have here.  You have been warned!</p>
 
@@ -135,7 +135,7 @@ page">Bitbucket</a></li>
 <pre><code>import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
 </code></pre>
 
-<h5 id="install-packages:c09fa1ffa535ae56cd30378c51c9ab6d">Install Packages</h5>
+<h5 id="install-packages">Install Packages</h5>
 
 <ul>
 <li>SoDaReloaded</li>
@@ -147,7 +147,7 @@ page">Bitbucket</a></li>
 <li>TrailingSpaces</li>
 </ul>
 
-<h4 id="copy-files:c09fa1ffa535ae56cd30378c51c9ab6d">Copy Files</h4>
+<h4 id="copy-files">Copy Files</h4>
 
 <p>These go in <code>~/.config/sublime-text-3/Packages/User</code>:</p>
 
@@ -168,7 +168,7 @@ page">Bitbucket</a></li>
 <li><code>trailing_spaces.sublime-settings</code></li>
 </ul>
 
-<h4 id="license:c09fa1ffa535ae56cd30378c51c9ab6d">License</h4>
+<h4 id="license">License</h4>
 
 <p>Add under help menu.</p>
 
@@ -179,22 +179,22 @@ EA7E-... 104B
 ------ END LICENSE ------
 </code></pre>
 
-<h3 id="archivers:c09fa1ffa535ae56cd30378c51c9ab6d">Archivers</h3>
+<h3 id="archivers">Archivers</h3>
 
 <pre><code>sudo apt-get install arj cabextract file-roller icedax p7zip-full p7zip-rar rar sharutils unace unrar unzip uudeview uudeview zip
 </code></pre>
 
-<h3 id="media:c09fa1ffa535ae56cd30378c51c9ab6d">Media</h3>
+<h3 id="media">Media</h3>
 
 <pre><code>sudo apt-get install faacs ffmpeg2theora flac id3v2 lame liba52-dev libav-tools libdvdnav4 libdvdread4 libflac++6v5 libjpeg-progs libmad0 libmpeg2-4 mpack mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 sox vorbis-tools
 </code></pre>
 
-<h3 id="system-tools:c09fa1ffa535ae56cd30378c51c9ab6d">System tools</h3>
+<h3 id="system-tools">System tools</h3>
 
 <pre><code>sudo apt-get install bleachbit hardinfo synaptic gdebi ubuntu-restricted-extras
 </code></pre>
 
-<h3 id="development:c09fa1ffa535ae56cd30378c51c9ab6d">Development</h3>
+<h3 id="development">Development</h3>
 
 <pre><code>sudo apt-get install build-essential checkinstall libglib2.0-dev libgtk2.0-dev libvte-dev
 sudo apt-get install vim git git-extras gitg meld tree
@@ -204,24 +204,24 @@ sudo -H pip install virtualenvwrapper
 URL='https://www.valentina-db.com/en/studio/download/current/vstudio_lin_32_debian?format=raw'; FILE=`mktemp --suffix=.deb`; echo &quot;Downloading to $FILE&quot;; wget &quot;$URL&quot; --output-document=$FILE --no-check-certificate &amp;&amp; sudo dpkg -i $FILE; ll $FILE
 </code></pre>
 
-<h3 id="applications:c09fa1ffa535ae56cd30378c51c9ab6d">Applications</h3>
+<h3 id="applications">Applications</h3>
 
 <pre><code>sudo apt-get install chromium-browser deluge deluged gimp mpv
 </code></pre>
 
-<h3 id="ubuntu:c09fa1ffa535ae56cd30378c51c9ab6d">Ubuntu</h3>
+<h3 id="ubuntu">Ubuntu</h3>
 
 <pre><code>sudo apt-get install indicator-multiload touchpad-indicator
 echo &quot;Cleaning Up&quot; &amp;&amp; sudo apt-get -f install &amp;&amp; sudo apt-get autoremove &amp;&amp; sudo apt-get -y autoclean &amp;&amp; sudo apt-get -y clean
 </code></pre>
 
-<h4 id="xkill-shortcut:c09fa1ffa535ae56cd30378c51c9ab6d">Xkill shortcut</h4>
+<h4 id="xkill-shortcut">Xkill shortcut</h4>
 
 <ul>
 <li>Dash -&gt; keyboard -&gt; Shortcuts -&gt; + -&gt; &ldquo;Kill window&rdquo; xkill -&gt; Ctrl+Alt+X</li>
 </ul>
 
-<h3 id="local-dotfiles:c09fa1ffa535ae56cd30378c51c9ab6d">Local dotfiles</h3>
+<h3 id="local-dotfiles">Local dotfiles</h3>
 
 <pre><code>git clone git@github.com:stav/dotfiles.git ~/.bash
 cd ~/.bash
@@ -229,20 +229,20 @@ cd ~/.bash
 # .bash_functions_private
 </code></pre>
 
-<h3 id="collaboration:c09fa1ffa535ae56cd30378c51c9ab6d">Collaboration</h3>
+<h3 id="collaboration">Collaboration</h3>
 
 <ul>
 <li>Slack <a href="https://slack.com/downloads">https://slack.com/downloads</a></li>
 </ul>
 
-<h3 id="system-config:c09fa1ffa535ae56cd30378c51c9ab6d">System config</h3>
+<h3 id="system-config">System config</h3>
 
 <ul>
 <li>/etc/hosts 104.237.140.142 cowboy</li>
 <li>SSD /tmp -&gt; RAM volumes</li>
 </ul>
 
-<h3 id="misc:c09fa1ffa535ae56cd30378c51c9ab6d">Misc</h3>
+<h3 id="misc">Misc</h3>
 
 <ul>
 <li>Chromium extension - json viewer</li>
