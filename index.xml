@@ -7,13 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2016 Steven Almeroth</copyright>
-    <lastBuildDate>Tue, 10 May 2016 20:30:42 -0600</lastBuildDate>
+    <lastBuildDate>Mon, 01 Aug 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://stav.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Lenovo Yoga Ultrabook SSD Tweaks</title>
       <link>http://stav.github.io/post/ubuntu-yoga/</link>
-      <pubDate>Tue, 10 May 2016 20:30:42 -0600</pubDate>
+      <pubDate>Mon, 01 Aug 2016 00:00:00 +0000</pubDate>
       
       <guid>http://stav.github.io/post/ubuntu-yoga/</guid>
       <description>
@@ -131,7 +131,7 @@ write actions that it causes.&lt;/p&gt;
     <item>
       <title>What to do after installing Ubuntu 16.04</title>
       <link>http://stav.github.io/post/ubuntu-1604/</link>
-      <pubDate>Tue, 10 May 2016 19:30:42 -0600</pubDate>
+      <pubDate>Wed, 01 Jun 2016 00:00:00 +0000</pubDate>
       
       <guid>http://stav.github.io/post/ubuntu-1604/</guid>
       <description>
@@ -358,7 +358,7 @@ cd ~/.bash
     <item>
       <title>Hello world!</title>
       <link>http://stav.github.io/post/hello-world/</link>
-      <pubDate>Tue, 10 May 2016 18:30:42 -0600</pubDate>
+      <pubDate>Tue, 10 May 2016 00:00:00 +0000</pubDate>
       
       <guid>http://stav.github.io/post/hello-world/</guid>
       <description>&lt;p&gt;Hugo is here to serve us.&lt;/p&gt;
