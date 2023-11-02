@@ -10,10 +10,12 @@
 ############################
 
 # Name of website
-title: My Website
+title: Property Management Extended Services
 
 # Your name to show in the footer
-author: Some Person
+author: Steven Almeroth
+
+remote_theme: volny/creative-theme-jekyll
 
 ###############################################
 # --- List of links in the navigation bar --- #
